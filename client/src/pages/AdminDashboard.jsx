@@ -37,22 +37,23 @@ function AdminDashboard() {
     <div className="dashboard">
       <Navbar />
       <section>
-        <h2>All Tickets</h2>
-        {error && <p className="form-error">{error}</p>}
-        {loading ? (
-          <p>Loading tickets...</p>
-        ) : (
-          <TicketList
-            tickets={tickets}
-            renderActions={(ticket) => (
-              <StatusDropdown
-                currentStatus={ticket.status}
-                onChange={(newStatus) => handleStatusChange(ticket._id, newStatus)}
-              />
-            )}
-          />
-        )}
-      </section>
+  <h2>All Tickets</h2>
+  {error ? (
+    <p className="form-error">{error}</p>
+  ) : loading ? (
+    <p>Loading tickets...</p>
+  ) : (
+    <TicketList
+      tickets={tickets}
+      renderActions={(ticket) => (
+        <StatusDropdown
+          currentStatus={ticket.status}
+          onChange={(newStatus) => handleStatusChange(ticket._id, newStatus)}
+        />
+      )}
+    />
+  )}
+</section>
     </div>
   );
 }

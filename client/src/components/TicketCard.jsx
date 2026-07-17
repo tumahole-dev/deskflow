@@ -1,7 +1,7 @@
 function TicketCard({ ticket, children }) {
   const createdByName = typeof ticket.createdBy === 'object'
     ? ticket.createdBy?.name
-    : ticket.createdBy;
+    : null; // raw ID string (Employee's own tickets) — don't show it
 
   return (
     <div className="ticket-card">

@@ -42,9 +42,14 @@ function EmployeeDashboard() {
       </section>
       <section>
         <h2>My Tickets</h2>
-        {error && <p className="form-error">{error}</p>}
-        {loading ? <p>Loading tickets...</p> : <TicketList tickets={tickets} />}
-      </section>
+        {error ? (
+        <p className="form-error">{error}</p>
+        ) : loading ? (
+        <p>Loading tickets...</p>
+        ) : (
+        <TicketList tickets={tickets} />
+        )}
+        </section>
     </div>
   );
 }
