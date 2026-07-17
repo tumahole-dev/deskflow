@@ -5,8 +5,10 @@ import EmployeeDashboard from './pages/EmployeeDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 
 const ProtectedRoute = ({ children, role }) => {
-  const { user } = useAuth();
-  if (!user) return <Navigate to="/login" />
+  const { user, loading } = useAuth();
+
+  if (loading) return <p>Loading...</p>;
+  if (!user) return <Navigate to="/login" />;
   if (role && user.role !== role) return <Navigate to="/login" />;
   return children;
 };

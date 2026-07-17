@@ -1,16 +1,36 @@
+import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import TicketForm from '../components/TicketForm';
 import TicketList from '../components/TicketList';
-
-const dummyTickets = [
-  { _id: '1', title: 'Laptop wont turn on', priority: 'High', status: 'Open' },
-  { _id: '2', title: 'VPN not connecting', priority: 'Medium', status: 'In Progress' },
-];
+import api from '../services/api';
 
 function EmployeeDashboard() {
-  const handleCreateTicket = (ticketData) => {
-    // Day 4: this will POST to /api/tickets
-    console.log('New ticket:', ticketData);
+  const [tickets, setTickets] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  const fetchTickets = async () => {
+    try {
+      const response = await api.get('/tickets');
+      setTickets(response.data);
+    } catch (err) {
+      setError('Failed to load tickets.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTickets();
+  }, []);
+
+  const handleCreateTicket = async (ticketData) => {
+    try {
+      await api.post('/tickets', ticketData);
+      fetchTickets(); // refresh list after creating
+    } catch (err) {
+      setError('Failed to create ticket.');
+    }
   };
 
   return (
@@ -22,7 +42,8 @@ function EmployeeDashboard() {
       </section>
       <section>
         <h2>My Tickets</h2>
-        <TicketList tickets={dummyTickets} />
+        {error && <p className="form-error">{error}</p>}
+        {loading ? <p>Loading tickets...</p> : <TicketList tickets={tickets} />}
       </section>
     </div>
   );
