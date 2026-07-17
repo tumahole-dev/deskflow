@@ -1,4 +1,3 @@
-# DeskFlow - Internal IT Service Request Portal
 # DeskFlow — Internal IT Service Request Portal
 
 A full-stack ticketing system for employees to report IT issues and admins to manage resolutions, built as a 5-day sprint project.
