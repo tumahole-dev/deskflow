@@ -2,6 +2,13 @@
 
 A full-stack ticketing system for employees to report IT issues and admins to manage resolutions, built as a 5-day sprint project.
 
+## Live Demo
+- **App:** https://deskflow-orcin.vercel.app/login
+- **API:** https://deskflow-api-lbo9.onrender.com
+- **API Docs (Swagger):** https://deskflow-api-lbo9.onrender.com/api-docs
+
+> Note: the backend is hosted on Render's free tier, which spins down after ~15 minutes of inactivity. The first request after idle time may take 30–60 seconds to respond while the server wakes up — this is expected, not a bug.
+
 ## Tech Stack
 
 - **Frontend:** React (Vite), React Router, Axios
